@@ -1,0 +1,20 @@
+{
+    "name": "messenger_os/messenger_os-php",
+    "description": "This library allows easily sending emails through MessengerOS using PHP.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "MessengerOS\\MessengerOS\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Teodor Mincu",
+            "email": "teodor@messengeros.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    }
+}
