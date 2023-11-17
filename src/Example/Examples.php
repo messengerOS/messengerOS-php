@@ -44,13 +44,20 @@ $email
     ->setSubject("My subject line from API")
     ->setPreviewLine("My preview line from API")
     ->setDeliveryProvider($messengerOsEmailDeliveryProviderKey)
-    ->setTemplate("_OPTIONAL_TEMPLATE_API_KEY_FROM_PLATFORM")
     ->setReplyTo("no-reply@mycompany.com")
-    ->setBody("<p>My HTML Content</p>")
     ->setParams([
         ['first_name' => 'Thomas'],
         ['last_name' => 'Smith']
     ]);
+
+/* if the email template is build in the originating platform */
+$email
+    ->setBody("<p>Howdy, [first_name]!</p>");
+
+/* if the email template is build in MessengeOS UI use the template API KEY// */
+$email
+    ->setTemplate("_OPTIONAL_TEMPLATE_API_KEY_FROM_PLATFORM_");
+
 
 $emails[] = $email;
 
@@ -60,12 +67,18 @@ $sms = new Sms\Sms();
 $sms
     ->setRecipients($smsRecipients)
     ->setDeliveryProvider($messengerOsSmsDeliveryProviderKey)
-    ->setSmsBody("My text content")
-    ->setTemplate("_OPTIONAL_TEMPLATE_API_KEY_FROM_PLATFORM")
     ->setParams([
         ['first_name' => 'Thomas'],
         ['last_name' => 'Smith']
     ]);
+
+/* if the SMS template is build in the originating platform */
+$sms
+    ->setSmsBody("<p>Howdy, [first_name] [last_name]!</p>");
+
+/* if the SMS template is build in MessengeOS UI use the template API KEY// */
+$sms
+    ->setTemplate("_OPTIONAL_TEMPLATE_API_KEY_FROM_PLATFORM_");
 
 $SMSes[] = $sms;
 
