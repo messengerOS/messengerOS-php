@@ -2,7 +2,9 @@
 
 namespace MessengerOS\MessengerOS\Model\Email;
 
-class EmailRecipient implements \JsonSerializable
+use MessengerOS\MessengerOS\Model\Recipient;
+
+class EmailRecipient extends Recipient implements \JsonSerializable
 {
     private ?string $email = null;
 
@@ -11,6 +13,10 @@ class EmailRecipient implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'first_name' => $this->getFirstName(),
+            'last_name' => $this->getLastName(),
+            'distribution_lists' => $this->getDistributionLists(),
+            'custom_info' => $this->getCustomInfo(),
             'email' => $this->getEmail(),
             'same_contact_as_phone_number' => $this->getSameContactAsPhoneNumber()
         ];
