@@ -8,14 +8,19 @@ use MessengerOS\MessengerOS\Model\Request;
 class ApiService
 {
     private string $messengerOsUserKey;
+
     private string $messengerOsProjectKey;
+
+    private string $messengerOsSendUrl;
 
     public function __construct(
         $messengerOsUserKey,
-        $messengerOsProjectKey
+        $messengerOsProjectKey,
+        $messengerOsSendUrl
     ) {
         $this->messengerOsUserKey = $messengerOsUserKey;
         $this->messengerOsProjectKey = $messengerOsProjectKey;
+        $this->messengerOsSendUrl = $messengerOsSendUrl;
     }
 
     public function sendNotifications(array $emails, array $SMSes)
@@ -49,12 +54,9 @@ class ApiService
             ->setProject($this->messengerOsProjectKey)
             ->setNotification($notification);
 
-        $url = "https://inbound.messengeros.com/1.0/send";
-
-        var_dump(json_encode($messengerOSRequest));
         $ch = curl_init();
         curl_setopt_array($ch, array(
-            CURLOPT_URL => $url,
+            CURLOPT_URL => $this->messengerOsSendUrl,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode($messengerOSRequest),
             CURLOPT_RETURNTRANSFER => true,
@@ -63,7 +65,6 @@ class ApiService
         ));
 
         $result = curl_exec ($ch);
-
         curl_close ($ch);
 
         return json_decode($result, true);

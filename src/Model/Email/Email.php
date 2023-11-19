@@ -25,6 +25,9 @@ class Email implements \JsonSerializable
 
     private ?array $params = [[]];
 
+    /** @var Attachment[]  */
+    private array $attachments = [];
+
     public function jsonSerialize(): array
     {
         return [
@@ -37,7 +40,8 @@ class Email implements \JsonSerializable
             'subject' => $this->getSubject(),
             'preview_line' => $this->getPreviewLine(),
             'body' => $this->getBody(),
-            'params' => $this->getParams()
+            'params' => $this->getParams(),
+            'attachments' => $this->getAttachments()
         ];
     }
 
@@ -218,6 +222,24 @@ class Email implements \JsonSerializable
     public function setParams(?array $params): Email
     {
         $this->params = $params;
+        return $this;
+    }
+
+    /**
+     * @return Attachment[]
+     */
+    public function getAttachments(): array
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param Attachment[] $attachments
+     * @return Email
+     */
+    public function setAttachments(array $attachments): Email
+    {
+        $this->attachments = $attachments;
         return $this;
     }
 }

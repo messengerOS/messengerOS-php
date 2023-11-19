@@ -15,10 +15,12 @@ $messengerOsEmailDeliveryProviderKey = getenv('MESSENGER_OS_EMAIL_DELIVERY_PROVI
 $messengerOsSmsDeliveryProviderKey = getenv('MESSENGER_OS_SMS_DELIVERY_PROVIDER_KEY');
 $messengerOsUserKey = getenv('MESSENGER_OS_USER_KEY');
 $messengerOsProjectKey = getenv('MESSENGER_OS_PROJECT_KEY');
+$messengerOsSendUrl = getenv('MESSENGER_OS_SEND_URL');
 
 $apiService = new ApiService(
     $messengerOsUserKey,
-    $messengerOsProjectKey
+    $messengerOsProjectKey,
+    $messengerOsSendUrl
 );
 
 /* Build email recipients list */
@@ -60,6 +62,17 @@ $email
 
 
 $emails[] = $email;
+
+$path = "<path-to-local-file-to-be attached>";
+$attachment = (new Email\Attachment())
+    ->setFileName(basename($path))
+    ->setFile(base64_encode(file_get_contents($path)));
+
+$attachments[] = $attachment;
+
+$email
+    ->setAttachments($attachments);
+
 
 // if we have to send 2 SMSes with different details we just build the Sms objects for each of them
 // and add them to the $SMSes array
