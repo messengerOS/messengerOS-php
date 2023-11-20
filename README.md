@@ -14,7 +14,7 @@
 
 ## Prerequisites
 
-- PHP version 7.1, 7.3, 7.4, 8.0, or 8.1
+- PHP version: from 7.4 up
 - A MessengerOS active account - we offer 3,000 free emails each month, **without adding our logo to your emails**. You need more? 
 Check our [pricing here](https://messengeros.com/pricing-plans/).
 
