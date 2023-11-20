@@ -7,14 +7,7 @@
 
 * [Installation](#installation)
 * [Quick Start](#quick-start)
-* [Use Cases](#use-cases)
-* [Usage](#usage)
-* [Announcements](#announcements)
-* [How to Contribute](#contribute)
-* [Troubleshooting](#troubleshooting)
 * [About](#about)
-* [Support](#support)
-* [License](#license)
 
 <a name="installation"></a>
 # Installation
@@ -32,12 +25,14 @@ Check our [pricing here](https://messengeros.com/pricing-plans/).
 cp .env.sample .env
 ```
 2. Edit the `.env` file to include `the following API KEYS` that live in your MessengerOS account.
-   
+
+````bash   
 MESSENGER_OS_USER_KEY - from your account information
 MESSENGER_OS_PROJECT_KEY - from the current project dashboard 
 MESSENGER_OS_EMAIL_DELIVERY_PROVIDER_KEY - from the Delivery Channel information  
 MESSENGER_OS_SMS_DELIVERY_PROVIDER_KEY - from the Delivery Channel information 
 MESSENGER_OS_SEND_URL="https://inbound.messengeros.com/1.0/send"
+````
 
 ## Install Package
 
@@ -105,6 +100,3 @@ try {
 # About
 
 messengeros-php is maintained and funded by [MessengerOS](https://messengeros.com).
-
-# License
-[The MIT License (MIT)](LICENSE)
